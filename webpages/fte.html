@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>FTE</h3>
+    <input type="text" placeholder="Search.." id="searchInput"><br>
+   <a href="index.html">Faculty</a>
+   <a href="courses.html">Courses</a>
+   <a href="fte.html">FTE</a>
+    <table id="myTable"><tr><th>Faculty</th><th>Year</th><th>Semester</th><th>FTE</th></tr></table>
+    <script>
+        document.getElementById("searchInput").addEventListener("keyup", function () {
+            var input, filter, table, tr, td, i, j, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+    
+            for (i = 0; i < tr.length; i++) {
+                if (i === 0) {
+                    continue;
+                }
+                var found = false;
+                for (j = 0; j < tr[i].cells.length; j++) {
+                    td = tr[i].cells[j];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            found = true;
+                            break;
+                        }
+                    }
+                }
+                if (found) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        });
+    </script>
+</body>
+</html>
